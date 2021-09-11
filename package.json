@@ -1,0 +1,25 @@
+{
+  "name": "prehackstoric-",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/bot.js",
+    "dev": "nodemon ./src/bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/satvik-tha-god/Prehackstoric-.git"
+  },
+  "author": "Satvik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/satvik-tha-god/Prehackstoric-/issues"
+  },
+  "homepage": "https://github.com/satvik-tha-god/Prehackstoric-#readme",
+  "dependencies": {
+    "discord.js": "^13.1.0",
+    "dotenv": "^10.0.0"
+  }
+}
