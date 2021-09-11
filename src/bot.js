@@ -23,6 +23,24 @@ const facts = [
   "Dinosaurs lived during a period of Earth’s history called the Mesozoic ('middle life') Era. They lived during all three periods of this era: the Triassic, Jurassic, and Cretaceous."
 ];
 
+const myths = [
+  "Dinosaurs could fly",
+  "Dinosaurs dragged their tails",
+  "Humans and dinosaurs lived together",
+  "Dinosaurs walked the earth, then mammals came",
+  "A giant meteor killed the dinosaurs",
+  "The Brontosaurus was a popular dinosaur",
+  "Some dinosaurs lived in water",
+  "Dinosaurs didn't have feathers",
+  "Archeologists dig up dinosaurs",
+  "Dinosaurs are lizards",
+  "We could clone dinosaur DNA in the future",
+  "T-Rex arms were small and weak",
+];
+
+var isMyth;
+var isFact;
+
 const memes = [
   "https://preview.redd.it/r7c4x7t2fk061.png?width=960&crop=smart&auto=webp&s=6671666197eb4ae8714bf88007f9fdc486a271bc",
   "https://preview.redd.it/dnh699bgoek61.png?width=2155&format=png&auto=webp&s=0c67c6f7be505ad91008aa1d70f2b5db21b881d8",
@@ -87,9 +105,43 @@ client.on('message', async (message) => {
   const args = message.content.slice(PREFIX.length).split(/ +/);
   const cmd = args.shift().toLowerCase();
   
+  // Myths vs facts game
+  if(message.content == 'play')
+  {
+    // send a fact
+    if(Math.round(Math.random())){
+      isFact = true;
+      isMyth = false;
+      var fact = randomIndex(facts);
+      message.channel.send(facts[fact]);
+    }
+    else{
+      isFact = false;
+      isMyth = true;
+      var myth = randomIndex(myths);
+      message.channel.send(myth[myth]);
+    }
+  }
+
+  if(message.content == 'myth'){
+    if(isMyth)
+      message.channel.send("Spot on!");
+    else
+      message.channel.send("Nah, that is a fact 🦖");
+  }
+
+  if(message.content == 'fact')
+  {
+    if(isFact)
+      message.channel.send("Yes, that is correct!");
+    else
+      message.channel.send("No, that is a myth🤯");
+  }
   if(cmd === 'ping'){
     message.channel.send('pong!!');
   }
+
+
   
 });
 
