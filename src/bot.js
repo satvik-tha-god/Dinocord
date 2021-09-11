@@ -23,6 +23,26 @@ const facts = [
   "Dinosaurs lived during a period of Earth’s history called the Mesozoic ('middle life') Era. They lived during all three periods of this era: the Triassic, Jurassic, and Cretaceous."
 ];
 
+const memes = [
+  "https://preview.redd.it/r7c4x7t2fk061.png?width=960&crop=smart&auto=webp&s=6671666197eb4ae8714bf88007f9fdc486a271bc",
+  "https://preview.redd.it/dnh699bgoek61.png?width=2155&format=png&auto=webp&s=0c67c6f7be505ad91008aa1d70f2b5db21b881d8",
+  "https://preview.redd.it/lv7rljnrryk51.jpg?width=640&crop=smart&auto=webp&s=d074f5ca2224b04299539fea82347287d4345e22",
+  "https://preview.redd.it/t58reqwuw0l61.png?width=640&format=png&auto=webp&s=9a587aadb549dd2dbb4173ae081beb5ff9332dd5",
+  "https://i.redd.it/mhxi3olw9bs51.jpg",
+  "https://preview.redd.it/43wdwn8c7fj61.png?width=1280&format=png&auto=webp&s=2e75eb7faf2a7168e511b6ac73b4cda9aa64c462",
+  "https://preview.redd.it/htsovbjuslj61.png?width=212&format=png&auto=webp&s=c26ae27ef3b8ce4784041a0f877c8db039ee1e03",
+  "https://preview.redd.it/9zu0btukl2k61.png?width=640&format=png&auto=webp&s=4203da16c8c2a4ab0f4c0dc42e912cf80037747d",
+  "https://preview.redd.it/97nqikgko9e11.png?width=960&crop=smart&auto=webp&s=f040c851340e1be6f9baba2e5fa8dcbd4d71bcee",
+  "https://preview.redd.it/w7mve2pbltp21.jpg?width=640&crop=smart&auto=webp&s=504622d263f1891795f643d12f22139d71479515",
+  "https://i.redd.it/6n8li2kmu7n31.jpg",
+  "https://preview.redd.it/qwn2bdhnwoh41.jpg?width=960&crop=smart&auto=webp&s=9f12859d54a8c9067791251aa25ad54f3781b46d",
+  "https://i.redd.it/70bkdz94ve231.jpg",
+  "https://i.redd.it/a3waydgbqed31.jpg",
+  "https://i.redd.it/hmjoxb4hnni21.jpg",
+  "https://preview.redd.it/mr6rhvtuwm371.jpg?width=640&crop=smart&auto=webp&s=813ae7d84dd7df5b129c24216e39812f95145aea",
+  "https://www.rd.com/wp-content/uploads/2021/04/dinosaur-jokes-tyranno-chorus.jpg?resize=696,696"
+];
+
 require("dotenv").config({
   path: '../.env'
 });
@@ -36,6 +56,11 @@ const client = new Client({
   intents: ["GUILDS", "GUILD_MESSAGES"]
 });
 
+function randomIndex (arr){
+  var res= Math.floor(Math.random() * arr.length);
+  return res;
+}
+
 
 const PREFIX = "$";
 
@@ -48,8 +73,14 @@ client.on('ready', () => {
 client.on('message', async (message) => {
   if (message.author.bot) return;
 
+  if(message.content == 'send memes'){
+    var meme = randomIndex(memes);
+    message.channel.send(memes[meme]);
+    message.channel.send("Haha 😆");
+  }
+
   if(message.content == 'enlighten me'){
-    var fact = Math.floor(Math.random() * facts.length);
+    var fact = randomIndex(facts);
     message.channel.send(facts[fact]);
   }
 
