@@ -8,8 +8,7 @@ It has the following features:
 1. Sends dinosaur memes!
 2. Myths vs Facts game: the user is prompted with text and they have to guess if it's a myth or a fact
 3. Dinosaur fact: enlightens you with a random dinosaur fact
-4. Classification: used AutoML to return the class of prehistoric species when the user uploads an image
-5. Search engine: Helps the users find info about prehistoric and dinosaur 
+4. Search engine: Helps the users find info about prehistoric and dinosaur 
 
 ## How we built it
 
@@ -43,11 +42,12 @@ It has the following features:
 
 We have the following plans for the future:
 1. Add a user rating system
-2. Implement Encryption
-3. Add more text-based games
-4. Do aesthetic changes to the bot
-5. More dinosaurs!
-6. Improve the ML model
-7. Make the necessary UI/UX changes to the frontend
-8. Add a chatbot for the homepage
-9. Add a customer support functionality
+2. Add an Interactive Classification Feature which uses AutoML to return the class of prehistoric species when the user uploads an image
+3. Implement Encryption
+4. Add more text-based games
+5. Do aesthetic changes to the bot
+6. More dinosaurs!
+7. Improve the ML model
+8. Make the necessary UI/UX changes to the frontend
+9. Add a chatbot for the homepage
+10. Add a customer support functionality
