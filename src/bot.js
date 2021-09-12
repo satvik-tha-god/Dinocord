@@ -135,12 +135,14 @@ client.on('message', async (message) => {
       isMyth = false;
       var fact = randomIndex(facts);
       message.channel.send(facts[fact]);
+      message.channel.send('Type "fact" if you think it is a fact and "myth" otherwise');
     }
     else{
       isFact = false;
       isMyth = true;
       var myth = randomIndex(myths);
       message.channel.send(myths[myth]);
+      message.channel.send('Type "fact" if you think it is a fact and "myth" otherwise');
     }
   }
 
