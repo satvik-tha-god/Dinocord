@@ -101,7 +101,7 @@ client.on('message', async (message) => {
         message.channel.send(results[0].title+"- "+results[0].link);
     }).catch(e => {
         // any possible errors that might have occurred (like no Internet connection)
-
+        message.channel.send("Invalid Search Query");
     });
   }
 
