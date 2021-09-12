@@ -68,10 +68,12 @@ require("dotenv").config({
 
 //client class and it's instance
 const { Client, Intents, CommandInteraction } = require('discord.js');
+const google = require('google-it');
+
 
 const client = new Client({
   partials: ['MESSAGE', 'REACTION'],
-  intents: ["GUILDS", "GUILD_MESSAGES"]
+  intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS"]
 });
 
 function randomIndex (arr){
@@ -82,7 +84,7 @@ function randomIndex (arr){
 
 const PREFIX = "$";
 
-client.on('ready', () => {
+client.on('ready', (message) => {
   console.log(`${client.user.tag} has logged in.`);
 });
 //client.on(event, action)
@@ -91,13 +93,32 @@ client.on('ready', () => {
 client.on('message', async (message) => {
   if (message.author.bot) return;
 
-  if(message.content == 'send memes'){
+  // search
+  if (/!dinocord-search/.test(message.content)){
+    const search  = message.content.replace('!dinocord-search', '');
+          
+    google({'query': search}).then(results => {
+        message.channel.send(results[0].title+"- "+results[0].link);
+    }).catch(e => {
+        // any possible errors that might have occurred (like no Internet connection)
+
+    });
+  }
+
+  //command list
+  if(message.content == 'dinocord commands'){
+    message.channel.send("Type\n  1. 'dinocord enlighten me' to get a random fact about pre-historic era 🤔\n 2. 'dinocord send meme' to get a funny meme based on pre historic era 😂\n 3. 'dinocord play' to play a game based on myths vs facts 🎲\n 4. 'dinocord classify' to give info about an image uploaded 👏\n 5. ' <search_query> !dinocord-search' to search prehistoric and dinosaur info 👀🔎");
+  }
+
+  //memes
+  if(message.content == 'dinocord send meme'){
     var meme = randomIndex(memes);
     message.channel.send(memes[meme]);
     message.channel.send("Haha 😆");
   }
 
-  if(message.content == 'enlighten me'){
+  //random facts
+  if(message.content == 'dinocord enlighten me'){
     var fact = randomIndex(facts);
     message.channel.send(facts[fact]);
   }
@@ -106,7 +127,7 @@ client.on('message', async (message) => {
   const cmd = args.shift().toLowerCase();
   
   // Myths vs facts game
-  if(message.content == 'play')
+  if(message.content == 'dinocord play')
   {
     // send a fact
     if(Math.round(Math.random())){
@@ -119,7 +140,7 @@ client.on('message', async (message) => {
       isFact = false;
       isMyth = true;
       var myth = randomIndex(myths);
-      message.channel.send(myth[myth]);
+      message.channel.send(myths[myth]);
     }
   }
 
@@ -143,6 +164,10 @@ client.on('message', async (message) => {
 
 
   
+});
+
+client.on('guildCreate', guild => {
+  guild.systemChannel.send("Greetings! I am Dinocord :cloud_lightning:\n Your companion for dinos and beyond  :smile: \nTo see what I can do and get started, enter the following command-\n\ndinocord commands");
 });
 
 client.on('messageReactionAdd', (reaction, user) => {
